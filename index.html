@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Color Catcher 🎨</title>
+
+    <link rel="stylesheet" href="styled/style.css">
+</head>
+
+<body>
+
+    <div class="game-container">
+
+        <!-- TOP HUD -->
+        <div class="hud">
+
+            <div class="hud-box">
+                <span>⭐ SCORE</span>
+                <strong id="score">0</strong>
+            </div>
+
+            <div class="hud-box">
+                <span>🔥 COMBO</span>
+                <strong id="combo">0</strong>
+            </div>
+
+            <div class="hud-box">
+                <span>🏆 BEST</span>
+                <strong id="highScore">0</strong>
+            </div>
+
+        </div>
+
+
+        <!-- TARGET COLOR -->
+        <div class="target-area">
+
+            <span>COLLECT</span>
+
+            <div id="targetColor" class="target-color"></div>
+
+            <strong id="targetName">RED</strong>
+
+        </div>
+
+
+        <!-- GAME CANVAS -->
+        <canvas id="gameCanvas"></canvas>
+
+
+        <!-- START SCREEN -->
+        <div id="startScreen" class="screen">
+
+            <div class="card">
+
+                <div class="game-icon">🎨</div>
+
+                <h1>COLOR<br><span>CATCHER</span></h1>
+
+                <p>
+                    Catch the falling balls that match
+                    the target color!
+                </p>
+
+                <div class="instructions">
+
+                    <div>
+                        <b>← →</b>
+                        <span>Move</span>
+                    </div>
+
+                    <div>
+                        <b>A D</b>
+                        <span>Move</span>
+                    </div>
+
+                </div>
+
+                <button id="startButton">
+                    START GAME
+                </button>
+
+            </div>
+
+        </div>
+
+
+        <!-- GAME OVER SCREEN -->
+        <div id="gameOverScreen" class="screen hidden">
+
+            <div class="card">
+
+                <div class="game-icon">💥</div>
+
+                <h2>GAME OVER</h2>
+
+                <p>Your Score</p>
+
+                <div id="finalScore" class="final-score">
+                    0
+                </div>
+
+                <p id="newBest" class="new-best hidden">
+                    🏆 NEW HIGH SCORE!
+                </p>
+
+                <button id="restartButton">
+                    PLAY AGAIN
+                </button>
+
+            </div>
+
+        </div>
+
+
+        <!-- MOBILE CONTROLS -->
+        <div class="mobile-controls">
+
+            <button id="leftButton">◀</button>
+
+            <button id="rightButton">▶</button>
+
+        </div>
+
+    </div>
+
+
+    <script src="script/script.js"></script>
+
+</body>
+</html>
