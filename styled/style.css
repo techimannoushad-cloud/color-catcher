@@ -1,0 +1,482 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --bg: #080812;
+    --panel: rgba(20, 20, 40, 0.85);
+    --white: #ffffff;
+    --purple: #8b5cf6;
+    --cyan: #22d3ee;
+}
+
+body {
+    width: 100%;
+    height: 100vh;
+    overflow: hidden;
+
+    background: var(--bg);
+
+    font-family:
+        Arial,
+        Helvetica,
+        sans-serif;
+
+    color: white;
+}
+
+
+/* =========================
+   GAME CONTAINER
+========================= */
+
+.game-container {
+    position: relative;
+
+    width: 100%;
+    height: 100vh;
+
+    overflow: hidden;
+
+    background:
+        radial-gradient(
+            circle at 20% 20%,
+            rgba(139, 92, 246, 0.15),
+            transparent 30%
+        ),
+        radial-gradient(
+            circle at 80% 80%,
+            rgba(34, 211, 238, 0.12),
+            transparent 30%
+        ),
+        #080812;
+}
+
+
+/* =========================
+   CANVAS
+========================= */
+
+#gameCanvas {
+    position: absolute;
+
+    left: 0;
+    top: 0;
+
+    width: 100%;
+    height: 100%;
+
+    z-index: 1;
+}
+
+
+/* =========================
+   HUD
+========================= */
+
+.hud {
+    position: absolute;
+
+    top: 20px;
+    left: 50%;
+
+    transform: translateX(-50%);
+
+    display: flex;
+    gap: 12px;
+
+    z-index: 10;
+}
+
+.hud-box {
+    min-width: 100px;
+
+    padding: 10px 18px;
+
+    border: 1px solid rgba(255,255,255,0.1);
+
+    border-radius: 14px;
+
+    background: rgba(20,20,35,0.8);
+
+    backdrop-filter: blur(10px);
+
+    text-align: center;
+}
+
+.hud-box span {
+    display: block;
+
+    font-size: 10px;
+
+    color: #aaa;
+
+    letter-spacing: 1px;
+}
+
+.hud-box strong {
+    display: block;
+
+    margin-top: 3px;
+
+    font-size: 20px;
+}
+
+
+/* =========================
+   TARGET
+========================= */
+
+.target-area {
+    position: absolute;
+
+    top: 115px;
+    left: 50%;
+
+    transform: translateX(-50%);
+
+    z-index: 10;
+
+    text-align: center;
+
+    pointer-events: none;
+}
+
+.target-area span {
+    display: block;
+
+    font-size: 11px;
+
+    letter-spacing: 3px;
+
+    color: #999;
+
+    margin-bottom: 7px;
+}
+
+.target-color {
+    width: 35px;
+    height: 35px;
+
+    margin: auto;
+
+    border-radius: 50%;
+
+    border: 3px solid white;
+
+    box-shadow:
+        0 0 15px currentColor,
+        0 0 35px currentColor;
+
+    transition: background 0.2s;
+}
+
+#targetName {
+    display: block;
+
+    margin-top: 6px;
+
+    font-size: 12px;
+
+    letter-spacing: 2px;
+}
+
+
+/* =========================
+   SCREENS
+========================= */
+
+.screen {
+    position: absolute;
+
+    inset: 0;
+
+    z-index: 50;
+
+    display: flex;
+
+    justify-content: center;
+    align-items: center;
+
+    background:
+        rgba(5,5,12,0.7);
+
+    backdrop-filter: blur(8px);
+}
+
+.hidden {
+    display: none !important;
+}
+
+
+/* =========================
+   CARD
+========================= */
+
+.card {
+    width: min(420px, 90%);
+
+    padding: 40px 30px;
+
+    text-align: center;
+
+    border-radius: 25px;
+
+    border: 1px solid rgba(255,255,255,0.12);
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(30,30,55,0.95),
+            rgba(12,12,25,0.95)
+        );
+
+    box-shadow:
+        0 30px 80px rgba(0,0,0,0.6);
+}
+
+.game-icon {
+    font-size: 55px;
+
+    margin-bottom: 10px;
+
+    animation: float 2s infinite ease-in-out;
+}
+
+@keyframes float {
+
+    0%,100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-8px);
+    }
+}
+
+.card h1 {
+    font-size: 40px;
+
+    line-height: 0.95;
+
+    letter-spacing: 3px;
+}
+
+.card h1 span {
+    color: #8b5cf6;
+}
+
+.card h2 {
+    font-size: 35px;
+
+    letter-spacing: 2px;
+}
+
+.card p {
+    margin: 20px auto;
+
+    max-width: 300px;
+
+    line-height: 1.6;
+
+    color: #aaa;
+}
+
+
+/* =========================
+   INSTRUCTIONS
+========================= */
+
+.instructions {
+    display: flex;
+
+    justify-content: center;
+
+    gap: 15px;
+
+    margin: 25px 0;
+}
+
+.instructions div {
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 5px;
+
+    min-width: 90px;
+
+    padding: 12px;
+
+    border-radius: 12px;
+
+    background: rgba(255,255,255,0.05);
+}
+
+.instructions b {
+    font-size: 18px;
+}
+
+.instructions span {
+    font-size: 11px;
+
+    color: #888;
+}
+
+
+/* =========================
+   BUTTON
+========================= */
+
+button {
+    border: none;
+
+    cursor: pointer;
+
+    font-family: inherit;
+}
+
+#startButton,
+#restartButton {
+    width: 100%;
+
+    padding: 16px;
+
+    border-radius: 14px;
+
+    color: white;
+
+    font-size: 16px;
+
+    font-weight: bold;
+
+    letter-spacing: 1px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #8b5cf6,
+            #6366f1
+        );
+
+    box-shadow:
+        0 10px 30px rgba(99,102,241,0.3);
+
+    transition:
+        transform 0.2s,
+        box-shadow 0.2s;
+}
+
+#startButton:hover,
+#restartButton:hover {
+    transform: translateY(-3px);
+
+    box-shadow:
+        0 15px 35px rgba(99,102,241,0.5);
+}
+
+#startButton:active,
+#restartButton:active {
+    transform: scale(0.97);
+}
+
+
+/* =========================
+   GAME OVER
+========================= */
+
+.final-score {
+    font-size: 55px;
+
+    font-weight: bold;
+
+    color: #8b5cf6;
+
+    margin: 10px 0 20px;
+}
+
+.new-best {
+    color: #facc15 !important;
+
+    font-weight: bold;
+}
+
+
+/* =========================
+   MOBILE CONTROLS
+========================= */
+
+.mobile-controls {
+    position: absolute;
+
+    bottom: 25px;
+    left: 0;
+
+    width: 100%;
+
+    display: none;
+
+    justify-content: center;
+
+    gap: 20px;
+
+    z-index: 20;
+}
+
+.mobile-controls button {
+    width: 70px;
+    height: 60px;
+
+    border-radius: 18px;
+
+    color: white;
+
+    font-size: 24px;
+
+    background: rgba(255,255,255,0.08);
+
+    border: 1px solid rgba(255,255,255,0.1);
+}
+
+
+/* =========================
+   MOBILE
+========================= */
+
+@media (max-width: 700px) {
+
+    .hud {
+        top: 12px;
+
+        gap: 6px;
+    }
+
+    .hud-box {
+        min-width: 80px;
+
+        padding: 8px 10px;
+    }
+
+    .hud-box strong {
+        font-size: 17px;
+    }
+
+    .target-area {
+        top: 95px;
+    }
+
+    .mobile-controls {
+        display: flex;
+    }
+
+    .card {
+        padding: 30px 22px;
+    }
+
+    .card h1 {
+        font-size: 32px;
+    }
+
+}
